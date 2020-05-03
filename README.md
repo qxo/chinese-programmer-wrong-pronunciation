@@ -1,9 +1,11 @@
 # chinese-programmer-wrong-pronunciation
 中国程序员容易发音错误的单词(点击喇叭可收听正确读音)
 
+<div id="words"  markdown="1">
+
 | 单词  | 正确发音 | 错误发音 |
-| ---- | ------- | ------- |
-| access [🔊](http://dict.youdao.com/dictvoice?audio=access&type=1) | ✅ ['ækses] | ❌ [ək'ses] |
+| :- | :- | :- |
+| access [🔊](http://dict.youdao.com/dictvoice?audio=access&type=1)| ✅ ['ækses] | ❌ [ək'ses] |
 | Adobe [🔊](http://dict.youdao.com/dictvoice?audio=Adobe&type=2) | ✅ [ə'dəʊbi]| ❌ [əˈdub] |
 | admin [🔊](http://dict.youdao.com/dictvoice?audio=admin&type=2) | ✅ ['ædmɪn] | ❌ [ɜ:d'mɪn] |
 | agile [🔊](http://dict.youdao.com/dictvoice?audio=agile&type=1) | ✅ ['ædʒaɪl] | ❌ [ə'dʒaɪl] |
@@ -36,7 +38,7 @@
 | format [🔊](http://dict.youdao.com/dictvoice?audio=format&type=1) | ✅ ['fɔːmæt]| ❌ [fɔ'mæt] |
 | Git [🔊](http://dict.youdao.com/dictvoice?audio=git&type=1) | ✅ [ɡɪt] | ❌ [dʒɪt] |
 | GNU [🔊](https://upload.wikimedia.org/wikipedia/commons/2/24/En-gnu.ogg) | ✅ [gnu:] | |
-| GUI [🔊](https://cn.bing.com/th?id=ODT.13FECD0AB1262567C86A87BC66B34500&pid=Dictionary) | ✅ [dʒiːjuːˈʌɪ] | |
+| GUI [🔊](https://cn.bing.com/th?id=ODT.13FECD0AB1262567C86A87BC66B34500&pid=Dictionary) | ✅ [ˈɡu:i] | |
 | Haskell [🔊](http://dict.youdao.com/dictvoice?audio=haskell&type=1) | ✅ [ˈhæskəl] | ❌ [hæˈskəl] |
 | height [🔊](http://dict.youdao.com/dictvoice?audio=height&type=1) | ✅ [haɪt] | ❌ [heɪt] |
 | hidden [🔊](http://dict.youdao.com/dictvoice?audio=hidden&type=1) | ✅ ['hɪdn] | ❌ ['haɪdn] |
@@ -102,5 +104,252 @@
 > 6. https://www.v2ex.com/t/342087
 
 
-#### 读对了所有的单词？
-我们正在招聘优秀的程序员，欢迎[加入石墨文档](https://shimo.im/doc/G3ckHEVF3f4qANHk)
+
+</div>
+
+<div id="sound"></div>
+
+<div id="playlistArea1"><label><input id="playCheckbox" type="checkbox" onChange="playOrPauseIf(!this.checked)"/>自动播放</label>
+<select id="playType">
+    <option value="fa-random">随机循环</option>
+    <option value="fa-play-circle">顺序循环</option>
+    <option value="fa-play-circle-o">单个循环</option>
+    <option value="fa-stop-circle">顺序播放</option>
+</select>
+<div id="currentWordArea">
+
+</div>
+<!--
+<i class="fa fa-step-backward"></i>
+<i class="fa fa-play-circle" onclick="return playOrPause(this)"></i>
+<i class="fa fa-play-circle-o" onclick="return playOrPause(this)"></i>
+<i class="fa fa-play" onclick="return playOrPause(this)"></i>
+<i class="fa fa-step-forward"></i>
+
+<i class="fa fa-pause"></i>
+<i class="fa fa-forward"></i>
+
+
+<a>⏴︎</a><a onclick="return playOrPause(this)">⏯︎</a><a>⏵︎</a> 
+-->
+
+<style>
+html body {
+ width:100%;
+}
+table td {
+  white-space: nowrap;
+  padding:5px;
+}
+
+#main_content_wrap {
+  border-top: none;
+}
+#header_wrap .inner {
+    padding:0px;
+}
+
+h1 {
+  display:none!important;
+}
+
+#words {
+
+}
+body {
+  background: #f2f2f2;
+}
+#note1 {
+ /*float:right;position:fixed; top:20px; right:8px;*/
+ display:none;
+}
+
+#playlistArea1 {
+ float:left;position:fixed; bottom:300px; left:8px; width: 180px;
+ background: lightblue;
+ font-size: large;
+ z-index:50;
+}
+#currentWordArea {
+ font-size: 28px;
+ z-index:100;
+ float:left;position:fixed; bottom:0px; left:0px; width: 100%;
+ margin:0px;
+ padding-top:8px;
+ padding-bottom: 8px;
+ background: lavender;
+}
+#currentWordArea i{
+  clear: both;
+  white-space: nowrap;
+  display: block;
+  background: lavender;
+  margin:15px;
+}
+#project_tagline {
+ white-space: nowrap;
+}
+.inner {
+ max-width: 800px;
+}
+</style>
+<script type="text/javascript">
+function hasClass(obj, cls) {
+    return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+}
+ 
+function addClass(obj, cls) {
+    if (!this.hasClass(obj, cls)) obj.className += " " + cls;
+}
+ 
+function removeClass(obj, cls) {
+    if (hasClass(obj, cls)) {
+        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+        obj.className = obj.className.replace(reg, ' ');
+    }
+}
+ 
+function toggleClass(obj,cls){
+	if(hasClass(obj,cls)){
+		removeClass(obj, cls);
+	}else{
+		addClass(obj, cls);
+	}
+}
+        function playSound(mp3Url){   
+                document.getElementById("sound").innerHTML='<audio autoplay="autoplay"><source src="' + mp3Url + ' type="audio/mpeg" /><source src="' + mp3Url + '" type="audio/ogg" /><embed hidden="true" autostart="true" loop="false" src="' + mp3Url +'" /></audio>';
+                return false;
+         }
+       var lastUrl;
+       var keyRe = /\S+/;
+       function openIt(url){
+          var serachIframe = document.getElementById("serachIframe");
+          serachIframe.src=url;
+          return false;
+       }
+       function playIt(a){
+         if(!a){
+            a = this;
+         } else if(!a.href) {
+           a = a.srcElement || a.target || a;
+         }
+         var mp3Url = a.href;
+         var text = a.innerHTML;
+         var key = keyRe.exec(text);
+         var cache = window.mp3DataCache ? window.mp3DataCache[key] : undefined;
+         if (cache){
+            mp3Url="data:audio/x-mpeg;base64,"+cache;
+         }
+         if(mp3Url){
+            playSound(mp3Url);
+         }
+         if (false &&key && lastUrl != mp3Url){
+          var detail1 = document.getElementById("detail1");
+          detail1.innerHTML=key+' <a href="'+mp3Url+'" target="_a1">读音URL</a>'
+           +'<a href="https://www.bing.com/dict/'+key+'" onclick="return openIt(this.href)">Bing词典</a>'
+           +'<a href="https://baike.baidu.com/item/'+key+'" onclick="return openIt(this.href)">百度百科</a>'
+           +'<a href="http://www.iciba.com/'+key+'" onclick="return openIt(this.href)">金山词霸</a>'
+           +'<a href="http://dict.cn/'+key+'" onclick="return openIt(this.href)">dict.cn</a>'
+           +'<a href="http://youdao.com/w/en/'+key+'" onclick="return openIt(this.href)">有道</a>'
+          ;
+          //openIt("https://cn.bing.com/dict/search?q="+key);
+          lastUrl = mp3Url;
+         }
+         return false;
+      }
+      //window.localStorage JSON.stringify
+      if(!window.mp3DataCache){
+        if(window.localStorage){
+            var jsonStr = localStorage.getItem("zz1700wordsOfComputer");
+            window.mp3DataCache = jsonStr ? JSON.parse(jsonStr) : {}
+        } else {
+            window.mp3DataCache={};
+        }
+      }
+      
+      var autoplay = true;
+      
+      function playOrPause(){
+        return playOrPauseIf(autoplay);
+      }
+      function playOrPauseIf(autoplay){
+        if (!autoplay){
+            playNext();
+            autoplay=true;
+        } else if(playTimer){
+          clearTimeout(playTimer);
+          autoplay=false;
+        }
+        return false;
+      }
+      
+
+      function playOrPause(){
+        if (!autoplay){
+            playNext();
+            autoplay=true;
+        } else if(playTimer){
+          clearTimeout(playTimer);
+          autoplay=false;
+        }
+        return false;
+      }
+
+      var currentIndex = 0;
+      function playNext(){
+         var a = aLinks[currentIndex];
+         var currentWordArea = document.getElementById("currentWordArea");
+         var tds = a.parentNode.parentNode.children;
+         currentWordArea.innerHTML ="<i>" + tds[0].innerHTML + "</i><i>" + tds[1].innerHTML + "</i>";
+         playIt(a);
+         var playType = document.getElementById("playType").value;
+         switch(playType){
+            case "fa-play-circle":
+                currentIndex++;
+                if (currentIndex >= aLinks.length){
+                    currentIndex = 0;
+                }
+                break;
+            case "fa-random":
+                currentIndex++;
+                var randomNum = parseInt(Math.random()* aLinks.length);
+                if (randomNum >= aLinks.length){
+                    randomNum = 0;
+                }
+                currentIndex = randomNum;
+                break;
+            case "fa-stop-circle":
+                currentIndex++;
+                if (currentIndex >= aLinks.length){
+                    currentIndex = 0;
+                }
+                return;
+            case "fa-play-circle-o":
+                break;
+         }
+         playTimer = setTimeout(playNext,3000);
+      }
+
+      window.onload = function() {
+      /*
+         serachDiv = document.getElementById("myCanvasContainer");
+         var w = document.body.clientWidth - 930;
+         if (w > 520){
+            serachDiv.style.width= w+"px";
+         }
+         */
+         aLinks=document.getElementById("words").getElementsByTagName("A");
+         for (var i=0; i < aLinks.length; i++) {
+            var a= aLinks[i];
+            a.target="_audio";
+            //a.addEventListener('click', playIt, true);
+            a.onclick = function(e){
+                return playIt(e);
+            }
+         }
+         if(document.getElementById("playCheckbox").checked){
+           playNext();
+         }
+      };
+</script>
+
