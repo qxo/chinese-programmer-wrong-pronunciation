@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>中国程序员容易发音错误的单词</title>
+    <style>
+    #tags {
+      overflow: hidden;  width: 800px;
+    }
+        #tags ul{
+        list-style: none;
+        text-indent: -2em;
+        }
+    #tags li {
+    list-style:
+     white-space: nowrap;text-align:left;height:26px; width:24%;float: left; margin-bottom: 5px;
+    }
+     #tags a {
+        text-decoration : none ;
+        padding-bottom:8px;
+     }
+   #tags a:after {
+    content: "🔊";
+    margin: -2 0.5em; // 0.5 x 2 = 1, + 1 offset to get the bullet back in the right spot
+    }
+   
+   legend a {
+     margin-left:15px;
+   }
+      #tags li a {
+      padding-bottom:12px;
+      }
+    </style>
+    <script type="text/javascript">
+        function playSound(mp3Url){   
+                document.getElementById("sound").innerHTML='<audio autoplay="autoplay"><source src="' + mp3Url + ' type="audio/mpeg" /><source src="' + mp3Url + '" type="audio/ogg" /><embed hidden="true" autostart="true" loop="false" src="' + mp3Url +'" /></audio>';
+                return false;
+         }
+       var lastUrl;
+       var keyRe = /\S+/;
+       function openIt(url){
+          var serachIframe = document.getElementById("serachIframe");
+          serachIframe.src=url;
+          return false;
+       }
+       function playIt(a){
+         var mp3Url = a.href;
+         if(mp3Url){
+            playSound(mp3Url);
+         }
+         var text = a.innerHTML;
+         var key = keyRe.exec(text)
+         if (key && lastUrl != mp3Url){
+          var detail1 = document.getElementById("detail1");
+          detail1.innerHTML=key+' <a href="'+mp3Url+'" target="_a1">读音URL</a>'
+           +'<a href="https://www.bing.com/dict/'+key+'" onclick="return openIt(this.href)">Bing词典</a>'
+           +'<a href="https://baike.baidu.com/item/'+key+'" onclick="return openIt(this.href)">百度百科</a>'
+           +'<a href="http://www.iciba.com/'+key+'" onclick="return openIt(this.href)">金山词霸</a>'
+           +'<a href="http://dict.cn/'+key+'" onclick="return openIt(this.href)">dict.cn</a>'
+           +'<a href="http://youdao.com/w/en/'+key+'" onclick="return openIt(this.href)">有道</a>'
+           
+          ;
+          openIt("https://cn.bing.com/dict/search?q="+key);
+          lastUrl = mp3Url;
+         }
+         return false;
+      }
+ 
+      window.onload = function() {
+         serachDiv = document.getElementById("myCanvasContainer");
+         var w = document.body.clientWidth - 930;
+         if (w > 520){
+            serachDiv.style.width= w+"px";
+         }
+      };
+    </script>
+
+  </head>
+  <body>
+    <a href="https://github.com/shimohq/chinese-programmer-wrong-pronunciation" style="display:block;float: right;position:absolute;top:10px;right:10px;">原始来源</a>
+    <h3>中国程序员容易发音错误的单词(点击可收听正确读音)</h3>
+    <fieldset id="myCanvasContainer"  style="display:block;float: right;position:absolute;top:30px;height:90%;right:0px;">
+     <legend id="detail1">详情区</legend>
+     
+    <iframe style="width:100%;height:100%" id="serachIframe" name="serachIframe"> </iframe>
+    </fieldset>
+    <div id="tags" style="float: left;width:920px;height:1024px;">
+      <ul>
+        <li><a href="http://dict.youdao.com/dictvoice?audio=AJAX&type=1" onClick="return playIt(this);" target="_a1">AJAX ['eidʒæks]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=ascii&type=1" onClick="return playIt(this);" target="_a1">ASCII ['æski]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=Adobe&type=2" onClick="return playIt(this);" target="_a1">Adobe [ə'dəʊbi]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=Angular&type=1" onClick="return playIt(this);" target="_a1">Angular ['æŋgjʊlə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=Apache&type=1" onClick="return playIt(this);" target="_a1">Apache [ə'pætʃɪ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=azure&type=1" onClick="return playIt(this);" target="_a1">Azure ['æʒə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=Daemon&type=1" onClick="return playIt(this);" target="_a1">Daemon ['diːmən]</a></li>
+<li><a href="https://upload.wikimedia.org/wikipedia/commons/8/85/Dijkstra.ogg" onClick="return playIt(this);" target="_a1">Dijkstra Dutch:[ˈdɛikstra]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=Django&type=1" onClick="return playIt(this);" target="_a1">Django [ˈdʒæŋɡoʊ]</a></li>
+<li><a href="https://upload.wikimedia.org/wikipedia/commons/2/24/En-gnu.ogg" onClick="return playIt(this);" target="_a1">GNU [gnu:]</a></li>
+<li><a href="https://cn.bing.com/th?id=ODT.13FECD0AB1262567C86A87BC66B34500&pid=Dictionary" onClick="return playIt(this);" target="_a1">GUI [ˈɡu:i]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=git&type=1" onClick="return playIt(this);" target="_a1">Git [ɡɪt]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=haskell&type=1" onClick="return playIt(this);" target="_a1">Haskell [ˈhæskəl]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=java&type=1" onClick="return playIt(this);" target="_a1">Java ['dʒɑːvə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=linux&type=2" onClick="return playIt(this);" target="_a1">Linux ['lɪnəks]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=lucene&type=1" onClick="return playIt(this);" target="_a1">Lucene [lu'siːn]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=Microsoft&type=1" onClick="return playIt(this);" target="_a1">Microsoft ['maikrəusɔft]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=cute&type=1" onClick="return playIt(this);" target="_a1">Qt [kjuːt]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=realm&type=1" onClick="return playIt(this);" target="_a1">Realm [relm]</a></li>
+<li><a href="http://upload.wikimedia.org/wikipedia/commons/b/b5/En-Ubuntu_pronunciation.oga" onClick="return playIt(this);" target="_a1">Ubuntu [ʊ'bʊntʊ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=youtube&type=1" onClick="return playIt(this);" target="_a1">YouTube ['juː'tjuːb]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=access&type=1" onClick="return playIt(this);" target="_a1">access ['ækses]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=admin&type=2" onClick="return playIt(this);" target="_a1">admin ['ædmɪn]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=agile&type=1" onClick="return playIt(this);" target="_a1">agile ['ædʒaɪl]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=alias&type=2" onClick="return playIt(this);" target="_a1">alias [ˈeɪliəs]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=amazon&type=1" onClick="return playIt(this);" target="_a1">amazon ['æməzən]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=analogy&type=1" onClick="return playIt(this);" target="_a1">analogy [əˈnælədʒi]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=app&type=1" onClick="return playIt(this);" target="_a1">app [æp]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=archive&type=1" onClick="return playIt(this);" target="_a1">archive ['ɑːkaɪv]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=array&type=1" onClick="return playIt(this);" target="_a1">array [ə'rei]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=aspect&type=1" onClick="return playIt(this);" target="_a1">aspect ['æspekt]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=avatar&type=1" onClick="return playIt(this);" target="_a1">avatar ['ævətɑː]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=bind&type=1" onClick="return playIt(this);" target="_a1">bind [baɪnd]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=cache&type=1" onClick="return playIt(this);" target="_a1">cache [kæʃ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=clang&type=2" onClick="return playIt(this);" target="_a1">clang [klæŋ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=debt&type=1" onClick="return playIt(this);" target="_a1">debt [det]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=deny&type=1" onClick="return playIt(this);" target="_a1">deny [dɪ'naɪ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=deque&type=1" onClick="return playIt(this);" target="_a1">deque ['dek]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=digest&type=1" onClick="return playIt(this);" target="_a1">digest n.</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=doc&type=1" onClick="return playIt(this);" target="_a1">doc [dɒk]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=event&type=1" onClick="return playIt(this);" target="_a1">event [ɪ'vent]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=facade&type=1" onClick="return playIt(this);" target="_a1">facade [fə'sɑːd]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=fedora&type=1" onClick="return playIt(this);" target="_a1">fedora [fɪ'dɔːrə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=format&type=1" onClick="return playIt(this);" target="_a1">format ['fɔːmæt]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=height&type=1" onClick="return playIt(this);" target="_a1">height [haɪt]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=hidden&type=1" onClick="return playIt(this);" target="_a1">hidden ['hɪdn]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=image&type=1" onClick="return playIt(this);" target="_a1">image ['ɪmɪdʒ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=implement&type=1" onClick="return playIt(this);" target="_a1">implement ['ɪmplɪm</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=integer&type=1" onClick="return playIt(this);" target="_a1">integer ['ɪntɪdʒə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=issue&type=1" onClick="return playIt(this);" target="_a1">issue ['ɪʃuː]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=JPEG&type=1" onClick="return playIt(this);" target="_a1">jpg jpeg ['dʒeɪpeɡ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=key&type=2" onClick="return playIt(this);" target="_a1">key [kiː]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=lambda&type=1" onClick="return playIt(this);" target="_a1">lambda [ˈlæmdə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=linear&type=1" onClick="return playIt(this);" target="_a1">linear ['lɪnɪə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=locale&type=2" onClick="return playIt(this);" target="_a1">locale [ləʊ'kɑːl]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=main&type=1" onClick="return playIt(this);" target="_a1">main [meɪn]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=margin&type=1" onClick="return playIt(this);" target="_a1">margin ['mɑːdʒɪn]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=matrix&type=1" onClick="return playIt(this);" target="_a1">matrix [ˈmeɪtrɪks]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=maven&type=1" onClick="return playIt(this);" target="_a1">maven ['meɪvn]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=module&type=1" onClick="return playIt(this);" target="_a1">module ['mɒdjuːl]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=null&type=1" onClick="return playIt(this);" target="_a1">null [nʌl]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=parameter&type=1" onClick="return playIt(this);" target="_a1">parameter [pə'ræmɪtə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=phantom&type=2" onClick="return playIt(this);" target="_a1">phantom ['fæntəm]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=privilege&type=1" onClick="return playIt(this);" target="_a1">privilege ['prɪvəlɪdʒ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=putty&type=1" onClick="return playIt(this);" target="_a1">putty [ˈpʌti]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=query&type=1" onClick="return playIt(this);" target="_a1">query ['kwɪəri]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=resolved&type=1" onClick="return playIt(this);" target="_a1">resolved [rɪ'zɒlvd]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=resort&type=1" onClick="return playIt(this);" target="_a1">resort [rɪˈzɔ:t]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=resume&type=1" onClick="return playIt(this);" target="_a1">resume [rɪ'zju:m]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=retina&type=1" onClick="return playIt(this);" target="_a1">retina ['retɪnə]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=safari&type=1" onClick="return playIt(this);" target="_a1">safari [sə'fɑːrɪ]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=san%20jose&type=1" onClick="return playIt(this);" target="_a1">san jose [sænhəu'zei]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=scheme&type=1" onClick="return playIt(this);" target="_a1">scheme [skiːm]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=segue&type=1" onClick="return playIt(this);" target="_a1">segue ['sɛɡwe]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=suite&type=1" onClick="return playIt(this);" target="_a1">suite [swiːt]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=typical&type=1" onClick="return playIt(this);" target="_a1">typical ['tɪpɪkl]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=variable&type=1" onClick="return playIt(this);" target="_a1">variable ['veəriəbl]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=vue&type=1" onClick="return playIt(this);" target="_a1">vue [v'ju:]</a></li>
+<li><a href="http://dict.youdao.com/dictvoice?audio=width&type=1" onClick="return playIt(this);" target="_a1">width [wɪdθ]</a></li>
+      </ul>
+    </div>
+    <div id="sound"></div>
+  </body>
+</html>
